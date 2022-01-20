@@ -17,6 +17,4 @@ laboratoryRoutes.get('/inactive', listController.hundleInactive);
 laboratoryRoutes.delete('/:id', deleteController.hundle);
 laboratoryRoutes.put('/:id', updateController.hundle);
 
-
-
 export {laboratoryRoutes};
