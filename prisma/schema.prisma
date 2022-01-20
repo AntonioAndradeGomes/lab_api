@@ -12,7 +12,7 @@ enum State{
   INACTIVE
 }
 enum ExamType{
-  Clinical_ANALYSIS
+  CLINICAL_ANALYSIS
   IMAGE
 }
 

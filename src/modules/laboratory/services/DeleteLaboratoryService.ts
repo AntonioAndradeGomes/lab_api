@@ -1,6 +1,6 @@
 import { State } from "@prisma/client";
 import { AppError } from "../../../config/errors/AppError";
-import prismaClient from "../../../prisma/prisma"
+import prismaClient from "../../../prisma/prisma";
 
 interface IRequest{
   id: string;

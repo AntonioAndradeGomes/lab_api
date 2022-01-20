@@ -1,5 +1,5 @@
 import { State } from "@prisma/client";
-import prismaClient from "../../../prisma/prisma"
+import prismaClient from "../../../prisma/prisma";
 
 
 
