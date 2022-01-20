@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  database:
+    image: postgres
+    networks: 
+      - pg-network
+    container_name: database_teste_node_wa_project
+    restart: always
+    ports:
+      - '5434:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=rootroot
+      - POSTGRES_DB=teste_node_wa_project
+    volumes:
+      - pgdata:/data/postgres
+    
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  pg-network:
+    driver: bridge
+
