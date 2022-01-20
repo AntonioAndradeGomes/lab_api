@@ -1,17 +1,17 @@
 import { State } from "@prisma/client";
 import { Request, Response } from "express";
+import { ListExamsService } from "../services/ListExamsService";
 
-import { ListLaboratoriesService } from "../services/ListLaboratoryService";
 
-class ListLaboratoriesController{
+class ListExamController{
   async hundleActive(request: Request, response: Response){
-    const service = new ListLaboratoriesService();
+    const service = new ListExamsService();
     return response.status(200).json(await service.execute({active: State.ACTIVE}));
   }
   async hundleInactive(request: Request, response: Response){
-    const service = new ListLaboratoriesService();
+    const service = new ListExamsService();
     return response.status(200).json(await service.execute({active: State.INACTIVE}));
   }
 }
 
-export {ListLaboratoriesController}
+export {ListExamController}

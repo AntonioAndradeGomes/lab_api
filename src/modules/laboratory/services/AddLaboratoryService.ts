@@ -1,5 +1,4 @@
-import prismaClient from "../../../prisma/prisma"
-
+import prismaClient from "../../../prisma/prisma";
 
 interface IRequest{
   address: string;
