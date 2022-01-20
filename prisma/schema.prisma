@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum State{
+  ACTIVE
+  INACTIVE
+}
+enum ExamType{
+  Clinical_ANALYSIS
+  IMAGE
+}
+
+model Laboratory{
+  id        String @id @default(uuid())
+  name      String
+  address   String
+  status    State
+}
+
+model Exam{
+  id        String @id @default(uuid())
+  type      ExamType
+  status    State
+  name      String
+}
