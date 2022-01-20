@@ -17,15 +17,19 @@ enum ExamType{
 }
 
 model Laboratory{
-  id        String @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
   address   String
-  status    State
+  status    State     @default(ACTIVE)
+
+  @@map("laboratories")
 }
 
 model Exam{
-  id        String @id @default(uuid())
+  id        String    @id @default(uuid())
   type      ExamType
-  status    State
+  status    State     @default(ACTIVE)
   name      String
+
+  @@map("exams")
 }
