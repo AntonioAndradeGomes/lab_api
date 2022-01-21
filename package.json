@@ -3,7 +3,7 @@
     "dev": "ts-node-dev --exit-child src/server.ts",
     "migrate": "prisma migrate dev",
     "studio": "prisma studio",
-    "start": "node dist/server.js"
+    "start": "node dist/src/server.js"
   },
   "dependencies": {
     "@prisma/client": "^3.8.1",
