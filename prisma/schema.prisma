@@ -12,20 +12,45 @@ enum State{
   INACTIVE
 }
 enum ExamType{
-  Clinical_ANALYSIS
+  CLINICAL_ANALYSIS
   IMAGE
 }
 
 model Laboratory{
-  id        String @id @default(uuid())
-  name      String
-  address   String
-  status    State
+  id            String      @id @default(uuid())
+  name          String
+  address       String
+  status        State       @default(ACTIVE)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  exams         LaboratoryOnExam[]
+
+  @@map("laboratories")
 }
 
 model Exam{
-  id        String @id @default(uuid())
-  type      ExamType
-  status    State
-  name      String
+  id            String      @id @default(uuid())
+  type          ExamType
+  status        State       @default(ACTIVE)
+  name          String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  laboratories  LaboratoryOnExam[]
+
+  @@map("exams")
+}
+
+model LaboratoryOnExam{
+
+  laboratoryId  String
+  examId        String
+  exam          Exam        @relation(fields: [examId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  laboratory    Laboratory  @relation(fields: [laboratoryId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@id([examId, laboratoryId])
+  @@map("laboratory_on_exam")
 }
