@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_json_1 = __importDefault(require("./swagger.json"));
 const cors_1 = __importDefault(require("cors"));
 require("express-async-errors");
 const express_1 = __importDefault(require("express"));
@@ -12,6 +14,7 @@ const AppError_1 = require("./config/errors/AppError");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_json_1.default));
 app.use(routes_1.router);
 app.use((err, request, response, NextFunction) => {
     if (err instanceof AppError_1.AppError) {

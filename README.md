@@ -1,6 +1,6 @@
 # Lab Api
 
-<p> O contexto dessa aplicação é uma API para a manutenão de laborátórios e exames. </p>
+<p> O contexto dessa aplicação é uma API REST para a manutenão de laborátórios e exames. </p>
 
 <div id = 'visao'>
 
@@ -12,15 +12,14 @@
 
 O projeto foi desenvolvido utilizando o [Typescript](https://www.typescriptlang.org/) como linguagem de programação e o [NodeJs](https://nodejs.org/en/). O framework utilizado foi o [ExpressJs](https://expressjs.com/), o ORM (_Object Relational Mapper_) utilizado foi o [Prisma](https://www.prisma.io/) e o banco de dados foi o PostegreSQL que está num container do [Docker](https://www.docker.com/).
 
-</div>
 
-<br>
+<br/>
 
 <div id="exclocal">
 
 ### Executando o projeto localmente
 
-<br>
+<br/>
 
 Primeiramente deve se ter instalado na máquina o [NodeJs](https://nodejs.org/en/), preferencialmente o [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable) e o [Docker](https://www.docker.com/).
 Segundo passo é executar os comandos de instalação de dependencias:
@@ -68,7 +67,7 @@ ou
 user@user:~$ npm run migrate
 ```
 
-Isso criará todas as tabela no banco de dados.<br><br>
+Isso criará todas as tabela no banco de dados.<br/><br/>
 Após execute o comando para executar a API:
 
 ```console
@@ -84,17 +83,17 @@ user@user:~$ npm run dev
 A aplicação estará sendo executada na porta 7000 do seu localhost.
 
 </div>
-<br>
+<br/>
 
 <div id='deploy'>
 
 ### Deploy
 
-<br>
+<br/>
 
 A aplicação está hospedada no serviço de cloud [Heroku](https://dashboard.heroku.com/); acessado o endpoint https://labapinode.herokuapp.com/ terá um _Hello world_ que mostra que aplicação está funcionando.
 
-<br>
+<br/>
 
 </div>
 
@@ -102,22 +101,89 @@ A aplicação está hospedada no serviço de cloud [Heroku](https://dashboard.he
 
 ### Requisitos da aplicação
 
-<br>
+<br/>
 
-A aplicação possui em caráter de 3 entidades, sendo elas: Exame, Laboratório e uma entidade que representa a associação de Exames e Laboratório.
+A aplicação possui em caráter de 3 entidades, sendo elas: Exame, Laboratório e uma entidade que representa a associação de Exames e Laboratório.<br/>
 
-<br>
+Sobre Exame, o usuário pode: criar exames, listrar exames ativos, deletar exame ativo, atualizar um exame, e buscar um exame pelo nome e assim obter além dos dados desse exame a lista de laborátorios associados a ele, já que um exame pode estar associado a vários laboratórios e os laboratórios possuem vários exames.<br/>
 
-Sobre Exame, o usuário pode: criar exames, listrar exames ativos, deletar exame ativo, atualizar um exame, e buscar um exame pelo nome e assim obter além dos dados desse exame a lista de laborátorios associados a ele, já que um exame pode estar associado a vários laboratórios e os laboratórios possuem vários exames.
+Sobre Laboratório, o usuário pode: criar laboratório, listrar laboratórios ativos, deletar laboratório ativo e atualizar um laboratório.<br/>
 
-<br>
+A imagem abaixo representa por meio de um diagrama de classes UML entidades e os relacionamentos entre eles.<br/>
 
-Sobre Laboratório, o usuário pode: criar laboratório, listrar laboratórios ativos, deletar laboratório ativo e atualizar um laboratório.
+![alt text](./docs/diagrama.png)
 
-<br>
+<br/>
 
-A imagem abaixo representa por meio de um diagrama de classes UML as tabelas no banco de dados e os relacionamentos entre elas.
+</div>
 
-<br>
+<div id="estutura">
 
-<div>
+### Estrutura da aplicação
+
+<br/>
+
+```yml
+-dist
+#após executar yarn tsc é gerado esta pasta com os arquivos transpilados de typescript para javascript que serão os códigos que estarão sendo executados no deploy
+
+-docs
+#documentos e imagens
+
+-node_modules
+#onde estarão as dependências baixadas 
+
+-prisma
+#contem a pasta migrations e o arquivo schema.prisma que serve para definir as tabelas do banco de dados
+  -migrations
+  #tera várias pastas com arquivos .sql. É o histórico de migrações     criadas pelo ORM Prisma
+
+-src
+#arquivos typescript do projeto
+
+  -config
+      #configurações e definições
+
+      -errors
+        #contem um arquivo que é uma classe para modelar erros previstos no sistema
+    
+  -modules
+  #para cada entidade se cria um modulo e dentro desse modulo há controladores, services e routes
+
+    -exam
+    #tudo refrente a entidade Exame
+
+      -controllers
+      #O controle deve se preocupar em aceitar a solicitação, repassar para o serviço de domínio correto, processe a solicitação e entregue a resposta ao cliente.
+
+      -service
+      #Essa camada é um design pattern que ajuda a abstrair suas regras de negócio, deixando sua controller mais limpa e com a responsabilidade única.
+
+      -routes
+      #Tem as definições de rota referentes a Exames
+
+    -laboratory
+      #contem a mesma estrutura acima
+
+    -associateExamLab
+      #contem a mesma estrutura de exam
+
+  -prisma
+    #configuração do PrismaClient para fazer as querys nos services
+
+  -routes
+    #contem o arquivo routes.ts que une os outros demais routes da aplicação
+
+  server.ts
+    #arquivo que inicia a aplicação
+
+```     
+
+Essa estrutura é baseada nesse artigo https://medium.com/@diomalta/como-organizar-e-estruturar-projetos-com-node-js-4845be004899 e pode ser encontrada em vários cursos na web.
+
+<br/>
+
+</div>
+
+
+
