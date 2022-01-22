@@ -1,5 +1,9 @@
 import "dotenv/config";
 
+import swaggerUI from "swagger-ui-express";
+
+import swaggerFile from "./swagger.json";
+
 import cors from 'cors';
 
 import "express-async-errors";
@@ -14,6 +18,8 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
+
 app.use(router);
 
 app.use(
@@ -25,5 +31,7 @@ app.use(
     return response.status(500).json({status: 'error', message: 'Internal server error'});
   }
 );
+
 const PORT = process.env.PORT || 7000;
+
 app.listen(PORT, () => console.log(`Server in running in port ${PORT}.`),);

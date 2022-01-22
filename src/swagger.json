@@ -1,0 +1,56 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Lab-Api Documentação",
+    "description" : "API para manutenção de laboratórios e exames.",
+    "version" : "1.0.0",
+    "contact" : {
+      "email" : "gomesmax1997@gmail.com"
+    }
+  },
+  "paths": {
+    "/exam": {
+      "post" : {
+        "tags": ["Exame"], 
+        "summary": "Criar um exame",
+        "description": "Cadastrar um novo exame",
+        "requestBody": {
+          "content" : {
+            "application/json": {
+              "schema": {
+                "type" : "object",
+                "properties": {
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["IMAGE", "CLINICAL_ANALYSIS"]
+                    
+                  }
+                },
+                "exemple": {
+                  "name": "exam name sample",
+                  "description": "CLINICAL_ANALYSIS"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "500" : {
+            "description" : "Category already exists"
+          }
+        }
+      }
+     
+      
+    }
+    
+  }
+  
+  
+}
