@@ -282,6 +282,190 @@
                 }
             }
         },
+        "/batch/exams": {
+            "post": {
+                "summary": "Cadastrar Exames em lote",
+                "description": "Rota responsável por cadastrar vários Exames de uma vez só",
+                "tags": ["Batch"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "exams": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Exam"
+                                        }
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "exames": {
+                                    "value": {
+                                        "exams": [
+                                            {
+                                                "name": "Exame de próstota",
+                                                "type": "image"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar Exames em lote",
+                "description": "Rota responsável por deletar vários Exames de uma vez só",
+                "tags": ["Batch"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "description": "Deve ser passado uma lista com os ids, que nesse casos dão uuid; dos Exames a serem deletados",
+                                "properties": {
+                                    "ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "ids": {
+                                    "value": {
+                                        "ids": [
+                                            "f53ee2b3-5c6e-4bcd-ad4c-5f11d6c71fdc", "25a56792-e365-45c2-99fb-e9f92c1912fb"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/batch/laboratories": {
+            "post": {
+                "summary": "Cadastrar Laboratórios em lote",
+                "description": "Rota responsável por cadastrar vários Laboratórios de uma vez só",
+                "tags": ["Batch"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "exams": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Laboratory"
+                                        }
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "exames": {
+                                    "value": {
+                                        "labs": [
+                                            {
+                                                "name": "Andrade Lab 3",
+                                                "address": "Rua Paulo Jacinto - 473; Quebrangulo, AL, Brasil"
+                                            },
+                                            {
+                                                "name": "Andrade Lab 4",
+                                                "address": "Rua Paulo Jacinto - 473; Quebrangulo, AL, Brasil"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar Laboratórios em lote",
+                "description": "Rota responsável por deletar vários Laboratórios de uma vez só",
+                "tags": ["Batch"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "description": "Deve ser passado uma lista com os ids, que nesse casos dão uuid; dos Laboratórios a serem deletados",
+                                "properties": {
+                                    "ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "ids": {
+                                    "value": {
+                                        "ids": [
+                                            "f53ee2b3-5c6e-4bcd-ad4c-5f11d6c71fdc", "25a56792-e365-45c2-99fb-e9f92c1912fb"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/associate": {
             "post": {
                 "summary": "Associar um Exame a um Laboratório",

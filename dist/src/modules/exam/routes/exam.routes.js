@@ -32,4 +32,13 @@ examRoutes.put("/:id", (0, celebrate_1.celebrate)({
     [celebrate_1.Segments.PARAMS]: {
         id: celebrate_1.Joi.string().uuid().required(),
     },
+    [celebrate_1.Segments.BODY]: {
+        name: celebrate_1.Joi.string().required(),
+        type: celebrate_1.Joi.string()
+            .valid("CLINICAL_ANALYSIS", "IMAGE", "clinical_analysis", "image")
+            .required(),
+        status: celebrate_1.Joi.string()
+            .valid("active", "inactive", "ACTIVE", "INACTIVE")
+            .required(),
+    },
 }), updateController.hundle);

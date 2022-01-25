@@ -17,7 +17,7 @@ laboratoryRoutes.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      adress: Joi.string().required(),
+      address: Joi.string().required(),
     },
   }),
   addController.hundle
@@ -42,6 +42,14 @@ laboratoryRoutes.put(
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
+    },
+
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      address: Joi.string().required(),
+      status: Joi.string()
+        .valid("active", "inactive", "ACTIVE", "INACTIVE")
+        .required(),
     },
   }),
   updateController.hundle
