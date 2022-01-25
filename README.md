@@ -10,7 +10,7 @@
 
 <br/>
 
-O projeto foi desenvolvido utilizando o [Typescript](https://www.typescriptlang.org/) como linguagem de programação e o [NodeJs](https://nodejs.org/en/). O framework utilizado foi o [ExpressJs](https://expressjs.com/), o ORM (_Object Relational Mapper_) utilizado foi o [Prisma](https://www.prisma.io/) e o banco de dados foi o PostegreSQL que está num container do [Docker](https://www.docker.com/).
+O projeto foi desenvolvido utilizando o [Typescript](https://www.typescriptlang.org/) e o [NodeJs](https://nodejs.org/en/). O framework utilizado foi o [ExpressJs](https://expressjs.com/), o ORM (_Object Relational Mapper_) utilizado foi o [Prisma](https://www.prisma.io/) e o banco de dados foi o PostegreSQL que está num container do [Docker](https://www.docker.com/).
 
 
 <br/>
@@ -21,7 +21,7 @@ O projeto foi desenvolvido utilizando o [Typescript](https://www.typescriptlang.
 
 <br/>
 
-Primeiramente deve se ter instalado na máquina o [NodeJs](https://nodejs.org/en/), preferencialmente o [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable) e o [Docker](https://www.docker.com/).
+Primeiramente deve se ter instalado na máquina o [NodeJs](https://nodejs.org/en/), preferencialmente o [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable), e o [Docker](https://www.docker.com/).
 Segundo passo é executar os comandos de instalação de dependencias:
 
 ```console
@@ -34,7 +34,7 @@ ou
 user@user:~$ npm install
 ```
 
-Esse comando irá gerar a pasta node_modules no projeto e é responsável por instalar essas dependências que se encontranto no aqeuivo package.json:
+Esse comando irá gerar a pasta node_modules no projeto que contém essas dependências que se encontram no arquivo package.json:
 
 ```javascript
 "dependencies": {
@@ -103,7 +103,7 @@ A aplicação está hospedada no serviço de cloud [Heroku](https://dashboard.he
 
 <br/>
 
-A aplicação possui em caráter de 3 entidades, sendo elas: Exame, Laboratório e uma entidade que representa a associação de Exames e Laboratório.<br/>
+A aplicação possui de 3 entidades, sendo elas: Exame, Laboratório e uma entidade que representa a associação de Exames e Laboratório.<br/>
 
 Sobre Exame, o usuário pode: criar exames, listrar exames ativos, deletar exame ativo, atualizar um exame, e buscar um exame pelo nome e assim obter além dos dados desse exame a lista de laborátorios associados a ele, já que um exame pode estar associado a vários laboratórios e os laboratórios possuem vários exames.<br/>
 
@@ -185,5 +185,11 @@ Essa estrutura é baseada nesse artigo https://medium.com/@diomalta/como-organiz
 
 </div>
 
+<div id = 'docs'>
+
+### Documentação
+
+A documentação desse projeto pode ser encontrada executando o projeto e em seguinda acessando o endpoint **`http://localhost:7000/api-docs`**. Ou como já foi feito o deploy da aplicação basta acessar https://labapinode.herokuapp.com/api-docs/ e mudar o server para o server de deploy.
 
 
+</div>
