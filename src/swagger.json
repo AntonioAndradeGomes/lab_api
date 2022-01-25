@@ -24,7 +24,7 @@
     "/exams": {
       "post": {
         "summary": "Cadastro de Exame",
-        "description": "Esta rota é responsável por cadastrar um novo exame",
+        "description": "Esta rota é responsável por cadastrar um novo exame.",
         "tags": ["Exams"],
         "requestBody": {
           "content": {
@@ -63,7 +63,7 @@
       },
       "get": {
         "summary": "Listar Exames Ativos",
-        "description": "Essa rota é responsável por listar todos os exames ativos",
+        "description": "Essa rota é responsável por listar todos os exames ativos.",
         "tags": ["Exams"],
         "parameters": [
           {
@@ -87,7 +87,7 @@
       },
       "delete": {
         "summary": "Remover um Exame Ativo",
-        "description": "Essa rota é responsável por remover um exame ativo",
+        "description": "Essa rota é responsável por remover um exame ativo.",
         "tags": ["Exams"],
         "parameters": [
           {
@@ -114,7 +114,7 @@
       },
       "put": {
         "summary": "Atualizar Exame",
-        "description": "Essa rota é responsável por atualizar dados de um exame",
+        "description": "Essa rota é responsável por atualizar dados de um exame.",
         "tags": ["Exams"],
         "parameters": [
           {
@@ -166,7 +166,7 @@
     "/laboratories" : {
       "post" : {
         "summary": "Cadastro de Laboratório",
-        "description": "Esta rota é responsável por cadastrar um novo laboratório",
+        "description": "Esta rota é responsável por cadastrar um novo laboratório.",
         "tags": ["Laboratory"],
         "requestBody": {
           "content": {
@@ -199,7 +199,7 @@
       },
       "get" : {
         "summary": "Listar Laboratórios Ativos",
-        "description": "Essa rota é responsável por obter todos os laboratórios ativos",
+        "description": "Essa rota é responsável por obter todos os laboratórios ativos.",
         "tags": ["Laboratory"],
         "responses": {
           "200": {
@@ -212,7 +212,7 @@
       },
       "delete" : {
         "summary": "Remover um Laboratório Ativo",
-        "description": "Essa rota é responsável por remover um laboratório ativo",
+        "description": "Essa rota é responsável por remover um laboratório ativo.",
         "tags": ["Laboratory"],
         "parameters": [
           {
@@ -239,7 +239,7 @@
       },
       "put": {
         "summary": "Atualizar Laboratório",
-        "description": "Essa rota é responsável por atualizar dados de um laboratório",
+        "description": "Essa rota é responsável por atualizar dados de um laboratório.",
         "tags": ["Laboratory"],
         "parameters": [
           {
@@ -286,7 +286,7 @@
     "/batch/exams" : {
       "post" : {
         "summary": "Cadastrar Exames em lote",
-        "description": "Rota responsável por cadastrar vários Exames de uma vez só",
+        "description": "Rota responsável por cadastrar vários Exames de uma vez só.",
         "tags": ["Batch"],
         "requestBody":{
           "content": {
@@ -331,14 +331,14 @@
       },
       "delete" : {
         "summary": "Deletar Exames em lote",
-        "description": "Rota responsável por deletar vários Exames de uma vez só",
+        "description": "Rota responsável por deletar vários Exames de uma vez só.",
         "tags": ["Batch"],
         "requestBody":{
           "content": {
             "application/json": {
               "schema" :{
                 "type": "object",
-                "description": "Deve ser passado uma lista com os ids, que nesse casos dão uuid; dos Exames a serem deletados",
+                "description": "Deve ser passado uma lista com os ids, que nesse casos dão uuid; dos Exames a serem deletados.",
                 "properties": {
                   "ids" : {
                     "type": "array",
@@ -376,7 +376,7 @@
     "/batch/laboratories" : {
       "post" : {
         "summary": "Cadastrar Laboratórios em lote",
-        "description": "Rota responsável por cadastrar vários Laboratórios de uma vez só",
+        "description": "Rota responsável por cadastrar vários Laboratórios de uma vez só.",
         "tags": ["Batch"],
         "requestBody":{
           "content": {
@@ -384,7 +384,7 @@
               "schema" :{
                 "type": "object",
                 "properties": {
-                  "exams" : {
+                  "labs" : {
                     "type": "array",
                     "items" : {
                       "$ref": "#/components/schemas/Laboratory"
@@ -393,7 +393,7 @@
                 }
               },
               "examples": {
-                "exames" : {
+                "labs" : {
                   "value" : {
                     "labs": [
                       {
@@ -425,14 +425,14 @@
       },
       "delete" : {
         "summary": "Deletar Laboratórios em lote",
-        "description": "Rota responsável por deletar vários Laboratórios de uma vez só",
+        "description": "Rota responsável por deletar vários Laboratórios de uma vez só.",
         "tags": ["Batch"],
         "requestBody":{
           "content": {
             "application/json": {
               "schema" :{
                 "type": "object",
-                "description": "Deve ser passado uma lista com os ids, que nesse casos dão uuid; dos Laboratórios a serem deletados",
+                "description": "Deve ser passado uma lista com os ids, que nesse casos dão uuid; dos Laboratórios a serem deletados.",
                 "properties": {
                   "ids" : {
                     "type": "array",
@@ -470,7 +470,7 @@
     "/associate" : {
       "post" : {
         "summary": "Associar um Exame a um Laboratório",
-        "description": "Associação de um Exame Ativo a um Laboratório Ativo, Um Exame pode estar associado a mais de um Laboratório",
+        "description": "Associação de um Exame Ativo a um Laboratório Ativo, Um Exame pode estar associado a mais de um Laboratório.",
         "tags": ["Associate"],
         "requestBody" : {
           "content": {
@@ -503,7 +503,7 @@
       },
       "delete" : {
         "summary": "Dessassociar um Exame Ativo de um Laboratório Ativo",
-        "description": "Dessassociar de um Exame Ativo a um Laboratório Ativo, Um Exame pode estar associado a mais de um Laboratório",
+        "description": "Dessassociar de um Exame Ativo a um Laboratório Ativo, Um Exame pode estar associado a mais de um Laboratório.",
         "tags": ["Associate"],
         "parameters": [
           {

@@ -43,7 +43,6 @@ laboratoryRoutes.put(
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
-
     [Segments.BODY]: {
       name: Joi.string().required(),
       address: Joi.string().required(),
