@@ -33,6 +33,10 @@ class AssociateExamLabService {
         }
         const associate = await prisma_1.default.laboratoryOnExam.create({
             data: { examId, laboratoryId: labId },
+            include: {
+                exam: true,
+                laboratory: true,
+            }
         });
         return associate;
     }

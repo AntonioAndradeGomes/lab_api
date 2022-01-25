@@ -1,36 +1,48 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Lab-Api Documentação",
-        "description": "API para manutenção de laboratórios e exames.",
-        "version": "1.0.0",
+        "title": "Lab Api",
+        "description": "Essa Api tem como objetivo a manutenão de laborátórios e exames.",
         "contact": {
-            "email": "gomesmax1997@gmail.com"
-        }
+            "email": "gomesmax1997@gmail.com",
+            "name": "Antonio Andrade"
+        },
+        "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "http://localhost:7000/",
+            "description": "API sendo executada na máquina local"
+        },
+        {
+            "url": "https://labapinode.herokuapp.com/",
+            "description": "Deploy da API no Heroku"
+        }
+    ],
     "paths": {
-        "/exam": {
+        "/exams": {
             "post": {
-                "tags": ["Exame"],
-                "summary": "Criar um exame",
-                "description": "Cadastrar um novo exame",
+                "summary": "Cadastro de Exame",
+                "description": "Esta rota é responsável por cadastrar um novo exame",
+                "tags": ["Exams"],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "type": {
-                                        "type": "string",
-                                        "enum": ["IMAGE", "CLINICAL_ANALYSIS"]
+                                "$ref": "#/components/schemas/Exam"
+                            },
+                            "examples": {
+                                "exame de vista": {
+                                    "value": {
+                                        "name": "exame de vista",
+                                        "type": "clinical_analysis"
                                     }
                                 },
-                                "exemple": {
-                                    "name": "exam name sample",
-                                    "description": "CLINICAL_ANALYSIS"
+                                "exame de óssseo": {
+                                    "value": {
+                                        "name": "exame de óssseo",
+                                        "type": "image"
+                                    }
                                 }
                             }
                         }
@@ -40,9 +52,371 @@
                     "201": {
                         "description": "Created"
                     },
+                    "400": {
+                        "description": "Bad Request"
+                    },
                     "500": {
-                        "description": "Category already exists"
+                        "description": "Internal Server Error"
                     }
+                }
+            },
+            "get": {
+                "summary": "Listar Exames Ativos",
+                "description": "Essa rota é responsável por listar todos os exames ativos",
+                "tags": ["Exams"],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Um nome de um exame, retorna os exames que contém esse nome e seus laboratórios associados.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remover um Exame Ativo",
+                "description": "Essa rota é responsável por remover um exame ativo",
+                "tags": ["Exams"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "O id de um exame. Nesse caso o id é um uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar Exame",
+                "description": "Essa rota é responsável por atualizar dados de um exame",
+                "tags": ["Exams"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "O id de um exame. Nesse caso o id é um uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ExamUpdate"
+                            },
+                            "examples": {
+                                "exame de vista": {
+                                    "value": {
+                                        "name": "exame de vista",
+                                        "type": "clinical_analysis"
+                                    }
+                                },
+                                "exame de óssseo": {
+                                    "value": {
+                                        "name": "exame de óssseo",
+                                        "type": "image"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/laboratories": {
+            "post": {
+                "summary": "Cadastro de Laboratório",
+                "description": "Esta rota é responsável por cadastrar um novo laboratório",
+                "tags": ["Laboratory"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Laboratory"
+                            },
+                            "examples": {
+                                "laboratorio": {
+                                    "value": {
+                                        "name": "UNILAB Mangabeiras",
+                                        "address": "R. Nelson de Azevedo Souza, 157 - Mangabeiras, Maceió - AL, 57037-100"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar Laboratórios Ativos",
+                "description": "Essa rota é responsável por obter todos os laboratórios ativos",
+                "tags": ["Laboratory"],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remover um Laboratório Ativo",
+                "description": "Essa rota é responsável por remover um laboratório ativo",
+                "tags": ["Laboratory"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "O id de um laboratório. Nesse caso o id é um uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar Laboratório",
+                "description": "Essa rota é responsável por atualizar dados de um laboratório",
+                "tags": ["Laboratory"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "O id de um laboratório. Nesse caso o id é um uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryUpdate"
+                            },
+                            "examples": {
+                                "laboratorio": {
+                                    "value": {
+                                        "name": "UNILAB Mangabeiras",
+                                        "address": "R. Nelson de Azevedo Souza, 157 - Mangabeiras, Maceió - AL, 57037-100",
+                                        "status": "inactive"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/associate": {
+            "post": {
+                "summary": "Associar um Exame a um Laboratório",
+                "description": "Associação de um Exame Ativo a um Laboratório Ativo, Um Exame pode estar associado a mais de um Laboratório",
+                "tags": ["Associate"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Associate"
+                            },
+                            "examples": {
+                                "laboratorio": {
+                                    "value": {
+                                        "examId": "25a56792-e365-45c2-99fb-e9f92c1912fb",
+                                        "labId": "f5753d99-7dde-4cd1-900a-f80f1b174e69"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Dessassociar um Exame Ativo de um Laboratório Ativo",
+                "description": "Dessassociar de um Exame Ativo a um Laboratório Ativo, Um Exame pode estar associado a mais de um Laboratório",
+                "tags": ["Associate"],
+                "parameters": [
+                    {
+                        "name": "examId",
+                        "in": "path",
+                        "description": "O id de um exame. Nesse caso o id é um uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "labId",
+                        "in": "path",
+                        "description": "O id de um laboratório. Nesse caso o id é um uuid.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Exam": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["image", "clinical_analysis"]
+                    }
+                }
+            },
+            "ExamUpdate": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["image", "clinical_analysis"]
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["active", "inactive"]
+                    }
+                }
+            },
+            "Laboratory": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LaboratoryUpdate": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["active", "inactive"]
+                    }
+                }
+            },
+            "Associate": {
+                "type": "object",
+                "properties": {
+                    "examId": {
+                        "type": "string"
+                    },
+                    "labId": { "type": "string" }
                 }
             }
         }

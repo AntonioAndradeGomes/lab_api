@@ -6,7 +6,7 @@ const ListExamsService_1 = require("../services/ListExamsService");
 class ListExamController {
     async hundleActive(request, response) {
         const name = request.query.name ? request.query.name.toString().trim() : null;
-        console.log(name);
+        // console.log(name);
         const service = new ListExamsService_1.ListExamsService();
         return response.status(200).json(await service.execute({ active: client_1.State.ACTIVE, name }));
     }
