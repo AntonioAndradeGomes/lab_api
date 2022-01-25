@@ -12,12 +12,15 @@ class AddExamService {
     const tyoeExists = ["CLINICAL_ANALYSIS", "IMAGE"].find(
       (element) => element == type.toUpperCase()
     );
+
     if (!tyoeExists) {
       throw new AppError("There is no such exam.");
     }
+    
     const exam = await prismaClient.exam.create({
       data: { name, type: ExamType[type.toUpperCase()] },
     });
+
     return exam;
   }
 }

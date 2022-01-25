@@ -16,7 +16,7 @@ const updateController = new UpdateLaboratoryController_1.UpdateLaboratoryContro
 laboratoryRoutes.post("/", (0, celebrate_1.celebrate)({
     [celebrate_1.Segments.BODY]: {
         name: celebrate_1.Joi.string().required(),
-        adress: celebrate_1.Joi.string().required(),
+        address: celebrate_1.Joi.string().required(),
     },
 }), addController.hundle);
 laboratoryRoutes.get("/", listController.hundleActive);
@@ -29,5 +29,12 @@ laboratoryRoutes.delete("/:id", (0, celebrate_1.celebrate)({
 laboratoryRoutes.put("/:id", (0, celebrate_1.celebrate)({
     [celebrate_1.Segments.PARAMS]: {
         id: celebrate_1.Joi.string().uuid().required(),
+    },
+    [celebrate_1.Segments.BODY]: {
+        name: celebrate_1.Joi.string().required(),
+        address: celebrate_1.Joi.string().required(),
+        status: celebrate_1.Joi.string()
+            .valid("active", "inactive", "ACTIVE", "INACTIVE")
+            .required(),
     },
 }), updateController.hundle);
