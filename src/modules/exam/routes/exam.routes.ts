@@ -45,6 +45,15 @@ examRoutes.put(
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      type: Joi.string()
+        .valid("CLINICAL_ANALYSIS", "IMAGE", "clinical_analysis", "image")
+        .required(),
+      status: Joi.string()
+        .valid("active", "inactive", "ACTIVE", "INACTIVE")
+        .required(),
+    },
   }),
   updateController.hundle
 );
