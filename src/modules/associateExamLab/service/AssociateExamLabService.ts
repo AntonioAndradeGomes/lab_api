@@ -9,9 +9,11 @@ interface IRequest {
 
 class AssociateExamLabService {
   async execute({ examId, labId }: IRequest) {
+    
     const lab = await prismaClient.laboratory.findUnique({
       where: { id: labId },
     });
+
     if (!lab) {
       throw new AppError("Laboratory does not exist.");
     }
@@ -21,6 +23,7 @@ class AssociateExamLabService {
     }
 
     const exam = await prismaClient.exam.findUnique({ where: { id: examId } });
+    
     if (!exam) {
       throw new AppError("Exam does not exist.");
     }
@@ -41,6 +44,10 @@ class AssociateExamLabService {
 
     const associate = await prismaClient.laboratoryOnExam.create({
       data: { examId, laboratoryId: labId },
+      include : {
+        exam: true,
+        laboratory: true,
+      }
     });
 
     return associate;

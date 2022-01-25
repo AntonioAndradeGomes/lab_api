@@ -17,7 +17,7 @@ examRoutes.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      tyoe: Joi.string()
+      type: Joi.string()
         .valid("CLINICAL_ANALYSIS", "IMAGE", "clinical_analysis", "image")
         .required(),
     },

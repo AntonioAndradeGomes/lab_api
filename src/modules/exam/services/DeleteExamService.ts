@@ -9,6 +9,10 @@ interface IRequest{
 class DeleteExamService{
   async execute({id} : IRequest){
     const exam = await prismaClient.exam.findUnique({where: {id}});
+
+    if(!exam){
+      throw new AppError("Exam does not exist.");
+    }
     if(exam.status == State.INACTIVE){
       throw new AppError('Exam inactive');
     }
