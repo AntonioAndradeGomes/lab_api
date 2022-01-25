@@ -1,25 +1,25 @@
 # Lab Api
 
-<p> O contexto dessa aplicação é uma API REST para a manutenão de laborátórios e exames. </p>
+ O contexto dessa aplicação é uma API REST para a manutenão de laborátórios e exames.
+
+## Índice
+
+1. [Visão geral](#visao)
+0. [Executando o projeto localmente](#exclocal)
+0. [Deploy](#deploy)
+0. [Requisitos da aplicação](#req)
+0. [Estrutura da aplicação](#estutura)
+0. [Documentação](#docs)
 
 <div id = 'visao'>
 
-<br/>
-
 ### Visão geral
 
-<br/>
-
 O projeto foi desenvolvido utilizando o [Typescript](https://www.typescriptlang.org/) e o [NodeJs](https://nodejs.org/en/). O framework utilizado foi o [ExpressJs](https://expressjs.com/), o ORM (_Object Relational Mapper_) utilizado foi o [Prisma](https://www.prisma.io/) e o banco de dados foi o PostegreSQL que está num container do [Docker](https://www.docker.com/).
-
-
-<br/>
 
 <div id="exclocal">
 
 ### Executando o projeto localmente
-
-<br/>
 
 Primeiramente deve se ter instalado na máquina o [NodeJs](https://nodejs.org/en/), preferencialmente o [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable), e o [Docker](https://www.docker.com/).
 Segundo passo é executar os comandos de instalação de dependencias:
@@ -83,25 +83,18 @@ user@user:~$ npm run dev
 A aplicação estará sendo executada na porta 7000 do seu localhost.
 
 </div>
-<br/>
 
 <div id='deploy'>
 
 ### Deploy
 
-<br/>
-
 A aplicação está hospedada no serviço de cloud [Heroku](https://dashboard.heroku.com/); acessado o endpoint https://labapinode.herokuapp.com/ terá um _Hello world_ que mostra que aplicação está funcionando.
-
-<br/>
 
 </div>
 
 <div id = 'req'>
 
 ### Requisitos da aplicação
-
-<br/>
 
 A aplicação possui de 3 entidades, sendo elas: Exame, Laboratório e uma entidade que representa a associação de Exames e Laboratório.<br/>
 
@@ -113,15 +106,11 @@ A imagem abaixo representa por meio de um diagrama de classes UML entidades e os
 
 ![alt text](./docs/diagrama.png)
 
-<br/>
-
 </div>
 
 <div id="estutura">
 
 ### Estrutura da aplicação
-
-<br/>
 
 ```yml
 -dist
@@ -180,8 +169,6 @@ A imagem abaixo representa por meio de um diagrama de classes UML entidades e os
 ```     
 
 Essa estrutura é baseada nesse artigo https://medium.com/@diomalta/como-organizar-e-estruturar-projetos-com-node-js-4845be004899 e pode ser encontrada em vários cursos na web.
-
-<br/>
 
 </div>
 
